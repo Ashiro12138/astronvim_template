@@ -79,9 +79,6 @@ return {
         ["s"] = { '"_s' },
         ["S"] = { '"_S' },
         ["<Del>"] = { '"_x' },
-        -- Change tabs
-        ["<C-n>"] = { "<cmd>bn<cr>", desc = "Next buffer" },
-        ["<C-p>"] = { "<cmd>bp<cr>", desc = "Previous buffer" },
       },
       t = {
         -- setting a mapping to false will disable it
