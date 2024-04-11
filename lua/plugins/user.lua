@@ -66,33 +66,6 @@ return {
     build = "./install --all",
   },
   {
-    "ggandor/leap.nvim",
-    event = "VeryLazy",
-    keys = {
-      { "s", "<Plug>(leap-forward-to)", mode = { "n", "x", "o" }, desc = "Leap forward to" },
-      { "S", "<Plug>(leap-backward-to)", mode = { "n", "x", "o" }, desc = "Leap backward to" },
-      { "x", "<Plug>(leap-forward-till)", mode = { "x", "o" }, desc = "Leap forward till" },
-      { "X", "<Plug>(leap-backward-till)", mode = { "x", "o" }, desc = "Leap backward till" },
-      { "gs", "<Plug>(leap-from-window)", mode = { "n", "x", "o" }, desc = "Leap from window" },
-    },
-    config = function()
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "LeapEnter",
-        callback = function()
-          vim.cmd.hi("Cursor", "blend=100")
-          vim.opt.guicursor:append { "a:Cursor/lCursor" }
-        end,
-      })
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "LeapLeave",
-        callback = function()
-          vim.cmd.hi("Cursor", "blend=0")
-          vim.opt.guicursor:remove { "a:Cursor/lCursor" }
-        end,
-      })
-    end,
-  },
-  {
     "mattkubej/jest.nvim",
     event = "VeryLazy",
   },
