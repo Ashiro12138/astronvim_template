@@ -1,85 +1,108 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- You can also add or configure plugins by creating files in this `plugins/` folder
 -- Here are some examples:
 
 ---@type LazySpec
 return {
-
-  -- == Examples of Adding Plugins ==
-
-  "andweeb/presence.nvim",
   {
-    "ray-x/lsp_signature.nvim",
-    event = "BufRead",
-    config = function() require("lsp_signature").setup() end,
+    "sitiom/nvim-numbertoggle",
+    event = "VeryLazy",
   },
-
-  -- == Examples of Overriding Plugins ==
-
-  -- customize alpha options
   {
-    "goolord/alpha-nvim",
-    opts = function(_, opts)
-      -- customize the dashboard header
-      opts.section.header.val = {
-        " █████  ███████ ████████ ██████   ██████",
-        "██   ██ ██         ██    ██   ██ ██    ██",
-        "███████ ███████    ██    ██████  ██    ██",
-        "██   ██      ██    ██    ██   ██ ██    ██",
-        "██   ██ ███████    ██    ██   ██  ██████",
-        " ",
-        "    ███    ██ ██    ██ ██ ███    ███",
-        "    ████   ██ ██    ██ ██ ████  ████",
-        "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-        "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-        "    ██   ████   ████   ██ ██      ██",
-      }
-      return opts
+    "tpope/vim-repeat",
+    event = "VeryLazy",
+  },
+  {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+  },
+  {
+    "Wansmer/treesj",
+    keys = {
+      {
+        "<leader>m",
+        "<CMD>TSJToggle<CR>",
+        desc = "Toggle Treesitter Join",
+      },
+    },
+    cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
+    opts = { use_default_keymaps = false },
+    event = "VeryLazy",
+  },
+  {
+    "f-person/git-blame.nvim",
+    keys = {
+      {
+        "<leader>gT",
+        "<CMD>GitBlameToggle<CR>",
+        desc = "Toggle Git Blame",
+      },
+    },
+    event = "VeryLazy",
+    config = function() vim.g.gitblame_date_format = "%r • %x" end,
+  },
+  {
+    "mxsdev/nvim-dap-vscode-js",
+    requires = { "mfussenegger/nvim-dap" },
+    event = "VeryLazy",
+  },
+  {
+    "David-Kunz/jester",
+    event = "VeryLazy",
+  },
+  {
+    "echasnovski/mini.nvim",
+    event = "VeryLazy",
+    version = false,
+    config = function()
+      require("mini.move").setup()
+      require("mini.cursorword").setup()
     end,
   },
-
-  -- You can disable default plugins as follows:
-  { "max397574/better-escape.nvim", enabled = false },
-
-  -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   {
-    "L3MON4D3/LuaSnip",
-    config = function(plugin, opts)
-      require "astronvim.plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
-      -- add more custom luasnip configuration such as filetype extend or custom snippets
-      local luasnip = require "luasnip"
-      luasnip.filetype_extend("javascript", { "javascriptreact" })
+    "kevinhwang91/nvim-bqf",
+    event = "VeryLazy",
+  },
+  {
+    "junegunn/fzf",
+    event = "VeryLazy",
+    dir = "~/.fzf",
+    build = "./install --all",
+  },
+  {
+    "ggandor/leap.nvim",
+    event = "VeryLazy",
+    keys = {
+      { "s", "<Plug>(leap-forward-to)", mode = { "n", "x", "o" }, desc = "Leap forward to" },
+      { "S", "<Plug>(leap-backward-to)", mode = { "n", "x", "o" }, desc = "Leap backward to" },
+      { "x", "<Plug>(leap-forward-till)", mode = { "x", "o" }, desc = "Leap forward till" },
+      { "X", "<Plug>(leap-backward-till)", mode = { "x", "o" }, desc = "Leap backward till" },
+      { "gs", "<Plug>(leap-from-window)", mode = { "n", "x", "o" }, desc = "Leap from window" },
+    },
+    config = function()
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "LeapEnter",
+        callback = function()
+          vim.cmd.hi("Cursor", "blend=100")
+          vim.opt.guicursor:append { "a:Cursor/lCursor" }
+        end,
+      })
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "LeapLeave",
+        callback = function()
+          vim.cmd.hi("Cursor", "blend=0")
+          vim.opt.guicursor:remove { "a:Cursor/lCursor" }
+        end,
+      })
     end,
   },
-
   {
-    "windwp/nvim-autopairs",
-    config = function(plugin, opts)
-      require "astronvim.plugins.configs.nvim-autopairs"(plugin, opts) -- include the default astronvim config that calls the setup call
-      -- add more custom autopairs configuration such as custom rules
-      local npairs = require "nvim-autopairs"
-      local Rule = require "nvim-autopairs.rule"
-      local cond = require "nvim-autopairs.conds"
-      npairs.add_rules(
-        {
-          Rule("$", "$", { "tex", "latex" })
-            -- don't add a pair if the next character is %
-            :with_pair(cond.not_after_regex "%%")
-            -- don't add a pair if  the previous character is xxx
-            :with_pair(
-              cond.not_before_regex("xxx", 3)
-            )
-            -- don't move right when repeat character
-            :with_move(cond.none())
-            -- don't delete if the next character is xx
-            :with_del(cond.not_after_regex "xx")
-            -- disable adding a newline when you press <cr>
-            :with_cr(cond.none()),
-        },
-        -- disable for .vim files, but it work for another filetypes
-        Rule("a", "a", "-vim")
-      )
-    end,
+    "mattkubej/jest.nvim",
+    event = "VeryLazy",
+  },
+  {
+    "mg979/vim-visual-multi",
+    event = "VeryLazy",
   },
 }

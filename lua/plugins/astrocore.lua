@@ -1,4 +1,4 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
@@ -70,10 +70,31 @@ return {
         ["<Leader>b"] = { desc = "Buffers" },
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+        ["<leader>r"] = {
+          function() vim.lsp.buf.format() end,
+          desc = "Format buffer",
+        },
+        ["x"] = { '"_x' },
+        ["X"] = { '"_X' },
+        ["s"] = { '"_s' },
+        ["S"] = { '"_S' },
+        ["<Del>"] = { '"_x' },
+        -- Change tabs
+        ["<C-n>"] = { "<cmd>bn<cr>", desc = "Next buffer" },
+        ["<C-p>"] = { "<cmd>bp<cr>", desc = "Previous buffer" },
       },
       t = {
         -- setting a mapping to false will disable it
         -- ["<esc>"] = false,
+      },
+      v = {
+        ["p"] = { "pgvy" },
+        ["P"] = { "Pgvy" },
+        ["x"] = { '"_x' },
+        ["X"] = { '"_X' },
+        ["s"] = { '"_s' },
+        ["S"] = { '"_S' },
+        ["<Del>"] = { '"_x' },
       },
     },
   },
