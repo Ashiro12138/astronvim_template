@@ -43,11 +43,6 @@ return {
     config = function() vim.g.gitblame_date_format = "%r • %x" end,
   },
   {
-    "mxsdev/nvim-dap-vscode-js",
-    requires = { "mfussenegger/nvim-dap" },
-    event = "VeryLazy",
-  },
-  {
     "David-Kunz/jester",
     event = "VeryLazy",
   },
