@@ -73,5 +73,6 @@ return {
   {
     "mg979/vim-visual-multi",
     event = "VeryLazy",
+    config = function() vim.g.VM_theme = "codedark" end,
   },
 }
