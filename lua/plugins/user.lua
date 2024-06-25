@@ -44,10 +44,6 @@ return {
     config = function() vim.g.gitblame_date_format = "%r • %x" end,
   },
   {
-    "David-Kunz/jester",
-    event = "VeryLazy",
-  },
-  {
     "echasnovski/mini.nvim",
     event = "VeryLazy",
     version = false,
@@ -67,12 +63,31 @@ return {
     build = "./install --all",
   },
   {
-    "mattkubej/jest.nvim",
-    event = "VeryLazy",
-  },
-  {
     "mg979/vim-visual-multi",
     event = "VeryLazy",
     config = function() vim.g.VM_theme = "codedark" end,
+  },
+  {
+    "pocco81/true-zen.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("true-zen").setup {
+        -- your config goes here
+        -- or just leave it empty :)
+      }
+      local api = vim.api
+
+      api.nvim_set_keymap("n", "<leader>zn", ":TZNarrow<CR>", { desc = "TZ Narrow" })
+      api.nvim_set_keymap("v", "<leader>zn", ":'<,'>TZNarrow<CR>", { desc = "TZ Narrow" })
+      api.nvim_set_keymap("n", "<leader>zf", ":TZFocus<CR>", { desc = "TZ Focus" })
+      api.nvim_set_keymap("n", "<leader>zm", ":TZMinimalist<CR>", { desc = "TZ Minimalist" })
+      api.nvim_set_keymap("n", "<leader>za", ":TZAtaraxis<CR>", { desc = "TZ Ataraxis" })
+    end,
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
   },
 }
