@@ -69,7 +69,7 @@ return {
         -- this is useful for naming menus
         ["<Leader>b"] = { desc = "Buffers" },
         -- quick save
-        -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+        -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" }, -- change description but the same command
         ["<leader>r"] = {
           function() vim.lsp.buf.format() end,
           desc = "Format buffer",
@@ -92,6 +92,7 @@ return {
         ["s"] = { '"_s' },
         ["S"] = { '"_S' },
         ["<Del>"] = { '"_x' },
+        ["<Leader>fc"] = { '"zy:Telescope live_grep default_text=<C-r>z<cr>' },
       },
     },
   },
