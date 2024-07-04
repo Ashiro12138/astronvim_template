@@ -90,4 +90,12 @@ return {
       "nvimtools/none-ls-extras.nvim",
     },
   },
+  {
+    "rhysd/conflict-marker.vim",
+    -- `[x` and `]x` to jump among conflict markers
+    -- `ct` to choose theirs
+    -- `co` to choose ours
+    -- `cn` to choose none
+    -- `cb` to choose both
+  },
 }
