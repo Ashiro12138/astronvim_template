@@ -87,12 +87,14 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
+    event = "VeryLazy",
     dependencies = {
       "nvimtools/none-ls-extras.nvim",
     },
   },
   {
     "rhysd/conflict-marker.vim",
+    event = "VeryLazy",
     -- `[x` and `]x` to jump among conflict markers
     -- `ct` to choose theirs
     -- `co` to choose ours
