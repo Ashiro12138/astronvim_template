@@ -99,4 +99,10 @@ return {
     -- `cn` to choose none
     -- `cb` to choose both
   },
+  {
+    "terryma/vim-expand-region",
+    event = "VeryLazy",
+    -- '+' to expand visual select region,
+    -- '_' to shrink visual select region,
+  },
 }
