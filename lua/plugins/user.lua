@@ -44,15 +44,6 @@ return {
     config = function() vim.g.gitblame_date_format = "%r • %x" end,
   },
   {
-    "echasnovski/mini.nvim",
-    event = "VeryLazy",
-    version = "*",
-    config = function()
-      require("mini.move").setup()
-      require("mini.cursorword").setup()
-    end,
-  },
-  {
     "kevinhwang91/nvim-bqf",
     event = "VeryLazy",
   },
