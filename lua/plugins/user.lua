@@ -46,7 +46,7 @@ return {
   {
     "echasnovski/mini.nvim",
     event = "VeryLazy",
-    version = false,
+    version = "*",
     config = function()
       require("mini.move").setup()
       require("mini.cursorword").setup()
