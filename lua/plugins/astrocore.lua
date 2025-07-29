@@ -1,5 +1,3 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
@@ -75,10 +73,29 @@ return {
 
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
-        -- ["<Leader>b"] = { desc = "Buffers" },
+        ["<Leader>b"] = { desc = "Buffers" },
 
         -- setting a mapping to false will disable it
         -- ["<C-S>"] = false,
+        ["<leader>r"] = {
+          function() vim.lsp.buf.format() end,
+          desc = "Format buffer",
+        },
+        ["x"] = { '"_x' },
+        ["X"] = { '"_X' },
+        ["s"] = { '"_s' },
+        ["S"] = { '"_S' },
+        ["<Del>"] = { '"_x' },
+      },
+      v = {
+        ["p"] = { "pgvy" },
+        ["P"] = { "Pgvy" },
+        ["x"] = { '"_x' },
+        ["X"] = { '"_X' },
+        ["s"] = { '"_s' },
+        ["S"] = { '"_S' },
+        ["<Del>"] = { '"_x' },
+        ["<Leader>fc"] = { '"zy:Telescope live_grep default_text=<C-r>z<cr>' },
       },
     },
   },
